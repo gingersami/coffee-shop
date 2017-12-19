@@ -1,18 +1,54 @@
 var coffeeShop = {
-  beans: 40,
-
+  beans: {
+    amount:40,
+    price:50,
+    refillBeans: 40
+  },
+  money: 500,
   drinkRequirements: {
-    latte: 10,
-    americano: 5,
-    doubleShot: 15,
-    frenchPress: 12
+    latte: {
+      beansNeeded:10,
+      price:10
+    },
+    americano: {
+      beansNeeded:5,
+      price: 5
+    },
+
+    doubleShot: {
+      beansNeeded:15,
+      price:20
+    },
+    frenchPress: {
+      beansNeeded: 12,
+      price: 7
+    }
   },
 
   makeDrink: function (drinkType) {
-    // TODO: Finish this method
-  }
-}
+    if(!this.drinkRequirements[drinkType]){
+      console.log("Sorry we dont serve "+ drinkType + " here")
+    }
+      else if(this.drinkRequirements[drinkType] && this.drinkRequirements[drinkType] <= this.beans.amount){
+        this.beans.amount -= this.drinkRequirements[drinkType]
+      }
+        else{
+          console.log("Sorry Out of Beans!")
+        }
+      },
+      buySupplies: function(){
+        if (this.money >= this.beans.price){
+          this.beans.amount += this.beans.refillBeans;
+          this.money -= this.beans.price;
+          console.log("Beans Refilled")
 
+        }
+      },
+      buyDrink: function(drinkType){
+        this.beans.amount -= this.drinkRequirements[drinkType]
+    }
+
+    
 coffeeShop.makeDrink("latte");
 coffeeShop.makeDrink("americano");
 coffeeShop.makeDrink("filtered");
