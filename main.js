@@ -49,7 +49,6 @@ var coffeeShop = {
         this.money += coffeeShop.drinkRequirements[drinkName].price;
     }
   }
-debugger
     coffeeShop.buyDrink("latte");
 coffeeShop.makeDrink("latte");
 coffeeShop.makeDrink("americano");
