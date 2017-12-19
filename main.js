@@ -29,8 +29,8 @@ var coffeeShop = {
     if(!this.drinkRequirements[drinkType]){
       console.log("Sorry we dont serve "+ drinkType + " here")
     }
-      else if(this.drinkRequirements[drinkType] && this.drinkRequirements[drinkType] <= this.beans.amount){
-        this.beans.amount -= this.drinkRequirements[drinkType]
+      else if(this.drinkRequirements[drinkType] && this.drinkRequirements[drinkType].beansNeeded <= this.beans.amount){
+        this.beans.amount -= this.drinkRequirements[drinkType].beansNeeded
       }
         else{
           console.log("Sorry Out of Beans!")
@@ -44,11 +44,13 @@ var coffeeShop = {
 
         }
       },
-      buyDrink: function(drinkType){
-        this.beans.amount -= this.drinkRequirements[drinkType]
+      buyDrink: function (drinkName) {
+       this.makeDrink(drinkName) 
+        this.money += coffeeShop.drinkRequirements[drinkName].price;
     }
-
-    
+  }
+debugger
+    coffeeShop.buyDrink("latte");
 coffeeShop.makeDrink("latte");
 coffeeShop.makeDrink("americano");
 coffeeShop.makeDrink("filtered");
